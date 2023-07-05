@@ -6,7 +6,7 @@ const Todocontainer = () => {
         {
           id: 1,
           title: 'Setup development environment',
-          completed: true,
+          completed: false,
         },
         {
           id: 2,
@@ -22,23 +22,10 @@ const Todocontainer = () => {
     const [input, setInput] = useState('');
 
 
-      const handleClick = () => {
-        if(input != '') {
-            setTodos((prev) => [...prev, input]);
-            setInput('')
-        }
-      };
-
-      const handleChange = (e) => {
-        console.log(e.target.value)
-        if(e.target.value != "") {
-        setInput(e.target.value);
-        }
-    }
       
   return (
     <div>
-      <Addinput handleClick={handleClick} input={input} handleChange={handleChange}></Addinput>
+      <Addinput  input={input}></Addinput>
       <Itemscontainer todos={todos} setTodos={setTodos}></Itemscontainer>
     </div>
   )
