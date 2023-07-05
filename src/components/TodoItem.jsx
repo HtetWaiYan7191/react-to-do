@@ -1,12 +1,11 @@
 import React from 'react'
 
-const TodoItem = ({ itemProp }) => {
+const TodoItem = ({ itemProp, setTodos }) => {
     return (
-      <ul>
-        {itemProp.map((item, id) => (
-          <li key={id}>{item}</li>
-        ))}
-      </ul>
+      <li>
+        <input type="checkbox" />
+        {itemProp.title}
+      </li>
     );
   };
   
