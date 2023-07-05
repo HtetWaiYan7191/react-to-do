@@ -2,11 +2,13 @@ import React from 'react'
 import Todoitem from './TodoItem'
 
 
-const Itemscontainer = ({ todos, setTodos }) => {
+const Itemscontainer = ({ todos, handleChange, delTodo }) => {
+
+
     return (
       <ul>
         {todos.map((todo) => (
-          <Todoitem key={todo.id} itemProp={todo} setTodos={setTodos} />
+          <Todoitem key={todo.id} itemProp={todo}  handleChange={handleChange} delTodo={delTodo} />
         ))}
       </ul>
     );

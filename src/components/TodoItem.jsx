@@ -1,28 +1,13 @@
 import React from 'react'
 
-const TodoItem = ({ itemProp, setTodos }) => {
-
-    const handleChange = (id) => {
-        setTodos((prevState) => {
-          return prevState.map((todo) => {
-            if (todo.id === id) {
-              return {
-                ...todo,
-                completed: !todo.completed,
-              };
-            }
-            return todo;
-          });
-        });
-      };
-      
-
+const TodoItem = ({ itemProp, handleChange, delTodo }) => {
 
     return (
       <li>
         <input type="checkbox"
         checked={itemProp.completed}
         onChange={() => handleChange(itemProp.id)} />
+        <button type='button' onClick={() => delTodo(itemProp.id)}>Delete</button>
         {itemProp.title}
       </li>
     );
