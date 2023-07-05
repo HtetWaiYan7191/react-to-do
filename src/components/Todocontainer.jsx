@@ -21,12 +21,32 @@ const Todocontainer = () => {
       ]);
     const [input, setInput] = useState('');
 
+    const handleChange = (id) => {
+        setTodos((prevState) => {
+          return prevState.map((todo) => {
+            if (todo.id === id) {
+              return {
+                ...todo,
+                completed: !todo.completed,
+              };
+            }
+            return todo;
+          });
+        });
+      };
+
+    const delTodo = (id) => {
+        setTodos((prevState) => {
+            return prevState.filter(todo => todo.id !== id)
+        })
+    }
+
 
       
   return (
     <div>
       <Addinput  input={input}></Addinput>
-      <Itemscontainer todos={todos} setTodos={setTodos}></Itemscontainer>
+      <Itemscontainer todos={todos} delTodo={delTodo}  handleChange={handleChange}></Itemscontainer>
     </div>
   )
 }
