@@ -21,6 +21,23 @@ const Todocontainer = () => {
       ]);
     const [input, setInput] = useState('');
 
+    const handleInput = (e) => {
+        setInput(e.target.value)
+    }
+    const addTodoItem = (title) => {
+        const newItem = {
+            id: 4 , 
+            title,
+            completed:false,
+        };
+        setTodos((prevState) => [...prevState,newItem])
+        setInput('')
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addTodoItem(input)
+    }
+
     const handleChange = (id) => {
         setTodos((prevState) => {
           return prevState.map((todo) => {
@@ -45,7 +62,7 @@ const Todocontainer = () => {
       
   return (
     <div>
-      <Addinput  input={input}></Addinput>
+      <Addinput  input={input} handleInput = {handleInput} handleSubmit={handleSubmit}></Addinput>
       <Itemscontainer todos={todos} delTodo={delTodo}  handleChange={handleChange}></Itemscontainer>
     </div>
   )
