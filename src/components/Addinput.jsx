@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Addinput = ( {input}) => {
+const Addinput = ( {input, handleInput, handleSubmit, message}) => {
 
   return (
-    <div>
-      <input type="text" value={input} placeholder='Add todo...' />
-      <button type='button'>Add List </button>
-    </div>
+    <>
+     <form>
+      <input type="text" value={input} onChange={handleInput} placeholder='Add todo...' />
+      <button type='button' onClick={handleSubmit}>Add List </button>
+    </form>
+    <span>{message}</span>
+    </>
+   
   )
 }
 

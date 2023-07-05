@@ -1,37 +1,45 @@
+import { v4 as uuidv4 } from "uuid";
 import React, { useState } from 'react'
 import Addinput from './Addinput'
 import Itemscontainer from './Itemscontainer'
 const Todocontainer = () => {
     const [todos, setTodos] = useState([
         {
-          id: 1,
+          id: uuidv4(),
           title: 'Setup development environment',
           completed: false,
         },
         {
-          id: 2,
+          id: uuidv4(),
           title: 'Develop website and add content',
           completed: false,
         },
         {
-          id: 3,
+          id: uuidv4(),
           title: 'Deploy to live server',
           completed: false,
         },
       ]);
     const [input, setInput] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleInput = (e) => {
         setInput(e.target.value)
     }
     const addTodoItem = (title) => {
-        const newItem = {
-            id: 4 , 
-            title,
-            completed:false,
-        };
-        setTodos((prevState) => [...prevState,newItem])
-        setInput('')
+        if(title.trim()) {
+            const newItem = {
+                id: uuidv4(), 
+                title,
+                completed:false,
+            };
+            setTodos((prevState) => [...prevState,newItem])
+            setInput('')
+            setMessage('')
+        } else {
+            setMessage('You have to add something !!')
+        }
+
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,7 +70,7 @@ const Todocontainer = () => {
       
   return (
     <div>
-      <Addinput  input={input} handleInput = {handleInput} handleSubmit={handleSubmit}></Addinput>
+      <Addinput  input={input} handleInput = {handleInput} message={message} handleSubmit={handleSubmit}></Addinput>
       <Itemscontainer todos={todos} delTodo={delTodo}  handleChange={handleChange}></Itemscontainer>
     </div>
   )
